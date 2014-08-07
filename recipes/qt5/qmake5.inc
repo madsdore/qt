@@ -3,7 +3,7 @@ LICENSE = "GFDL-1.3 & LGPL-2.1 & GPL-3.0"
 DEPENDS = "zlib dbus"
 
 DEPENDS:>sdk = " libdl libpthread librt"
-RDEPENDS:>sdk = "libdl libphtread librt"
+RDEPENDS:>sdk = " libdl libpthread librt"
 HOMEPAGE = "http://qt-project.org"
 
 QT_MODULE = "qtbase"
