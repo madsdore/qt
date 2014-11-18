@@ -1,4 +1,0 @@
-require qt5-${PV}.inc
-require ${PN}.inc
-
-SRC_URI += "file://qeglfshooks_imx5.cpp"

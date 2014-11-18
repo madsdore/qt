@@ -5,8 +5,9 @@
 ## needed variables for compilation.
 
 inherit qmake5_base
+inherit pkgconfig-install
 
-QT5TOOLSDEPENDS ?= "native:qmake5"
+QT5TOOLSDEPENDS ?= "native:qmake5_${PV}"
 CLASS_DEPENDS += "${QT5TOOLSDEPENDS} "
 
 addtask generateqtconfigfile after do_patch before do_configure

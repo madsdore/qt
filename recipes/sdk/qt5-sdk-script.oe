@@ -1,0 +1,15 @@
+DESCRIPTION = "Setup script needed for the QT5 sdk"
+
+RECIPE_TYPES = "canadian-cross"
+
+SRC_URI += "file://setup.sh"
+
+do_install () {
+	cp ${SRCDIR}/setup.sh ${D}
+}
+
+QT5_TOOLS="host:qmake5-utilities"
+
+PACKAGES = "${PN}"
+RDEPENDS_${PN} += "${QT5_TOOLS}"
+FILES_${PN} = "/setup.sh"

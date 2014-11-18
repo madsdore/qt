@@ -30,6 +30,7 @@
 ##          specified in this useflag. Default set to -lOpenVG.
 ## @useflag qtopengl_hooks_file Set to a file to copy into the mkspecs dir.
 ##          Is not set by default.
+## @useflag qtmtdev Set if you want mtdev support. Is not set by default.
 
 LICENSE = "GFDL-1.3 & LGPL-2.1 & GPL-3.0"
 
@@ -41,32 +42,22 @@ RECIPE_FLAGS += "qtx11 qtdirectfb qttslib qtgstreamer \
 	qtopengl_egl_flags qtopengl_flags \
 	qtopengl_qt_flags qtopengl_es1_flags \
 	qtopengl_es2_flags qtopengl_openvg_flags \
-	qtopengl_hooks_file"
+	qtopengl_hooks_file \
+	qtmtdev \
+	"
 
 require qt5.inc
 
 RECIPE_TYPES = "machine"
 
-SRC_URI += " \
-    file://0001-Add-linux-oe-g-platform.patch \
-    file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
-    file://0005-qmake-is-already-built-in-qtbase-native.patch \
-    file://0006-Allow-building-a-separate-qmake-for-the-target.patch \
-    file://0007-configureapp-Prefix-default-LIBDIRS-and-INCDIRS-with.patch \
-    file://fix_pkgconfig_and_prl_files_path.patch \
-    file://dont_export_system_variables.patch \
-    file://0013-Disable-mkv8snapshot.patch \
-    file://0014-enables-tslib-device-to-be-read-from-env-variable.patch \
-    file://allow_building_examples.patch \
-    file://0018-QOpenGLPaintDevice-sub-area-support.patch \
-    file://qtbug-32712.patch \
-"
+DEPENDS:>USE_qtmtdev += " mtdev mtdev-dev"
+RDEPENDS_${PN}:>USE_qtmtdev += " mtdev"
 
 ##################################
 ### DEPENDS
 ##################################
 
-DEPENDS += "native:qmake5 freetype jpeg libpng zlib openssl fontconfig \
+DEPENDS += "native:qmake5_${PV} freetype jpeg libpng zlib openssl fontconfig \
 	glib libpthread libm libdl librt libgcc libgio libglib libgthread \
 	libstdc++"
 
@@ -78,12 +69,14 @@ RDEPENDS_${PN} += "freetype libjpeg libpng libz openssl glib fontconfig-utils \
 		libpthread libm libdl librt libgcc libgio libglib libgthread \
 		libstdc++"
 
+RDEPENDS_${PN}-dev += "libxml2-dev"
+
 ##################################
 ### CONFIGURE
 ##################################
 
 QT_CONFIG_FLAGS += " \
-    -release -reduce-relocations \
+    -release \
     -shared -silent -glib -fontconfig -pkg-config \
     \
     -no-pch -no-rpath -no-nis -no-cups \
@@ -239,12 +232,6 @@ EOF
         cp ${USE_qtopengl_hooks_file} ${S}/mkspecs/linux-oe-g++/qeglfshooks.cpp
     fi
 }
-
-GSTREAMER_CONFIG = "-no-gstreamer"
-GSTREAMER_CONFIG:USE_qtgstreamer = ""
-QT_CONFIG_FLAGS += "${GSTREAMER_CONFIG}"
-DEPENDS:>USE_qtgstreamer += " gstreamer libgstbase"
-RDEPENDS_${PN}:>USE_qtgstreamer += " gstreamer libgstbase"
 
 DEPENDS:>USE_qtdirectfb = " directfb-dev libdirectfb"
 RDEPENDS_${PN}:>USE_qtdirectfb = " libdirectfb libdirect directfb-internal"
