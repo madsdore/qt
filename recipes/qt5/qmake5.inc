@@ -2,6 +2,10 @@ DESCRIPTION = "Native version of Qt/[X11|Mac|Embedded]"
 LICENSE = "GFDL-1.3 & LGPL-2.1 & GPL-3.0"
 DEPENDS = "zlib"
 
+RECIPE_FLAGS += " \
+	qtaccessibility \
+	"
+	
 EXTRA_DEPENDS_SDK = "libdl librt"
 EXTRA_DEPENDS_SDK:HOST_LIBC_mingw = ""
 DEPENDS:>sdk = " libpthread libm ${EXTRA_DEPENDS_SDK} native:qmake5"
@@ -27,7 +31,6 @@ EXTRA_OECONF = " \
     -no-libjpeg \
     -no-libpng \
     -no-gif \
-    -no-accessibility \
     -no-cups \
     -no-nis \
     -no-gui \
@@ -54,6 +57,7 @@ EXTRA_OECONF = " \
     -no-rpath \
     -platform ${BUILD_PLATFORM} \
 "
+
 BUILD_PLATFORM = "linux-oe-g++"
 BUILD_PLATFORM:HOST_LIBC_mingw = "win32-g++"
 EXTRA_OECONF:>HOST_LIBC_mingw += " \
@@ -61,7 +65,10 @@ EXTRA_OECONF:>HOST_LIBC_mingw += " \
     -device-option CROSS_COMPILE=${HOST_PREFIX} \
     -qpa windows"
 
-
+QT_ACCESSIBILITY_CONFIG = "-no-accessibility"
+QT_ACCESSIBILITY_CONFIG:USE_qtaccessibility = "-accessibility"
+EXTRA_OECONF += " ${QT_ACCESSIBILITY_CONFIG}"    
+    
 # qtbase is exception, configure script is using our get(X)QEvalMakeConf and setBootstrapEvalVariable functions to read it from shell
 export OE_QMAKE_COMPILER
 export OE_QMAKE_CC

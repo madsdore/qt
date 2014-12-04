@@ -20,3 +20,8 @@ SRC_URI += "file://qeglfshooks_imx5.cpp"
 QT_MTDEV_CONFIG = "-no-mtdev"
 QT_MTDEV_CONFIG:USE_qtmtdev = "-mtdev"
 QT_CONFIG_FLAGS += " ${QT_MTDEV_CONFIG}"
+
+DEPENDS += "mesa-gallium-libgl-dev libx11-xcb libxcb-dev libxcb-libxcb-glx libxcb-libxcb-glx-dev libxcb-libxcb-dri2 libxcb-libxcb-dri2-dev"
+RDEPENDS_${PN} += """ 
+  mesa-gallium-libgl libx11-xcb libxcb-libxcb-glx libxcb-libxcb-dri2
+"""

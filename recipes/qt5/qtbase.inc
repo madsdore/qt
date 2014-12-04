@@ -44,6 +44,7 @@ RECIPE_FLAGS += "qtx11 qtdirectfb qttslib qtgstreamer \
 	qtopengl_es2_flags qtopengl_openvg_flags \
 	qtopengl_hooks_file \
 	qtmtdev \
+	qtaccessibility \
 	"
 
 require qt5.inc
@@ -81,7 +82,7 @@ QT_CONFIG_FLAGS += " \
     \
     -no-pch -no-rpath -no-nis -no-cups \
     -no-sql-ibase -no-sql-mysql -no-sql-psql -no-sql-odbc -plugin-sql-sqlite \
-    -no-accessibility -no-sm -hostbindir \
+    -no-sm -hostbindir \
     -system-libjpeg -system-libpng -system-zlib \
     -linuxfb \
     ${QT_WIDGETS} \
@@ -92,6 +93,10 @@ QT_CONFIG_FLAGS += " \
     ${QT_TSLIB} \
     ${QT_QMLDEBUG} \
 "
+
+QT_ACCESSIBILITY_CONFIG = "-no-accessibility"
+QT_ACCESSIBILITY_CONFIG:USE_qtaccessibility = "-accessibility"
+QT_CONFIG_FLAGS += " ${QT_ACCESSIBILITY_CONFIG}"    
 
 do_generateqtconfigfile[postfuncs] += "do_generateqtconfigfile_fixup"
 do_generateqtconfigfile_fixup() {

@@ -36,7 +36,7 @@ FILES_${PN}-plugins-dbg = " \
 "
 
 # extra packages
-# qmlplugins 1-3 levels of subdirs qmldir + *{.so,*.qmltypes,*.qml,*js}
+# qmlplugins 1-4 levels of subdirs qmldir + *{.so,*.qmltypes,*.qml,*js}
 FILES_${PN}-qmlplugins = " \
     ${OE_QMAKE_PATH_QML}/*/*${SOLIBSDEV} \
     ${OE_QMAKE_PATH_QML}/*/qmldir \
@@ -53,6 +53,11 @@ FILES_${PN}-qmlplugins = " \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.qmltypes \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.qml \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.js \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/*${SOLIBSDEV} \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/qmldir \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qmltypes \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qml \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.js \
     ${OE_QMAKE_PATH_IMPORTS}/*.qmltypes \
     ${OE_QMAKE_PATH_IMPORTS}/*/*${SOLIBSDEV} \
     ${OE_QMAKE_PATH_IMPORTS}/*/*.qmltypes \
@@ -63,7 +68,13 @@ FILES_${PN}-qmlplugins = " \
     ${OE_QMAKE_PATH_IMPORTS}/*/*/*/*${SOLIBSDEV} \
     ${OE_QMAKE_PATH_IMPORTS}/*/*/*/*.qmltypes \
     ${OE_QMAKE_PATH_IMPORTS}/*/*/*/qmldir \
+    ${OE_QMAKE_PATH_IMPORTS}/*/*/*/*/*${SOLIBSDEV} \
+    ${OE_QMAKE_PATH_IMPORTS}/*/*/*/*/*.qmltypes \
+    ${OE_QMAKE_PATH_IMPORTS}/*/*/*/*/qmldir \
+    ${OE_QMAKE_PATH_QML}/*/images/ \
     ${OE_QMAKE_PATH_QML}/*/*/images/ \
+    ${OE_QMAKE_PATH_QML}/*/*/*/images/ \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*/images/ \
 "
 FILES_${PN}-tools = " \
     ${OE_QMAKE_PATH_BINS}/* \
