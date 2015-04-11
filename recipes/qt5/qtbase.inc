@@ -45,6 +45,7 @@ RECIPE_FLAGS += "qtx11 qtdirectfb qttslib qtgstreamer \
 	qtopengl_hooks_file \
 	qtmtdev \
 	qtaccessibility \
+	qtalsa \
 	"
 
 require qt5.inc
@@ -97,6 +98,10 @@ QT_CONFIG_FLAGS += " \
 QT_ACCESSIBILITY_CONFIG = "-no-accessibility"
 QT_ACCESSIBILITY_CONFIG:USE_qtaccessibility = "-accessibility"
 QT_CONFIG_FLAGS += " ${QT_ACCESSIBILITY_CONFIG}"    
+
+QT_ALSA_CONFIG = "-no-alsa"
+QT_ALSA_CONFIG:USE_qtalsa = "-alsa"
+QT_CONFIG_FLAGS += " ${QT_ALSA_CONFIG}"
 
 do_generateqtconfigfile[postfuncs] += "do_generateqtconfigfile_fixup"
 do_generateqtconfigfile_fixup() {
