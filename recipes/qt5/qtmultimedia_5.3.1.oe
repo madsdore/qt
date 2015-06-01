@@ -23,8 +23,8 @@ export OE_QMAKE_STRIP
 export QE_QMAKE_QMAKE
 
 DEPENDS += "mesa-gallium-libgl-dev libx11-xcb libxcb-dev libxcb-libxcb-glx libxcb-libxcb-glx-dev libxcb-libxcb-dri2 libxcb-libxcb-dri2-dev"
-DEPENDS += "gstreamer gstreamer-dev gst-plugins-base gst-plugins-base-dev gst-plugins-good gst-plugins-good-dev alsa-lib alsa-lib-dev alsa-lib-libasound"
+DEPENDS += "gstreamer gstreamer-dev gst-plugins-base gst-plugins-base-dev gst-plugins-good gst-plugins-good-dev gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-plugins-good-dev gst-plugins-bad-dev gst-plugins-ugly-dev alsa-lib alsa-lib-dev alsa-lib-libasound"
 RDEPENDS_${PN} += """  
-  mesa-gallium-libgl libx11-xcb libxcb-libxcb-glx libxcb-libxcb-dri2 gstreamer gst-plugins-base alsa-lib alsa-lib-libasound
+  mesa-gallium-libgl libx11-xcb libxcb-libxcb-glx libxcb-libxcb-dri2 gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly alsa-lib alsa-lib-libasound
 """
 

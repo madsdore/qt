@@ -69,6 +69,10 @@ QT_ACCESSIBILITY_CONFIG = "-no-accessibility"
 QT_ACCESSIBILITY_CONFIG:USE_qtaccessibility = "-accessibility"
 EXTRA_OECONF += " ${QT_ACCESSIBILITY_CONFIG}"    
     
+RECIPE_FLAGS += "qtdbus"
+EXTRA_OECONF:>USE_qtdbus = "-dbus"
+DEPENDS:>USE_qtdbus = " libdbus"
+
 # qtbase is exception, configure script is using our get(X)QEvalMakeConf and setBootstrapEvalVariable functions to read it from shell
 export OE_QMAKE_COMPILER
 export OE_QMAKE_CC
